@@ -1,0 +1,24 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemy_config.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+enemy_id = "ninja"
+display_name = "ninja"
+max_hp = 40.0
+attack = 15.0
+defense = 2.0
+gravity = 980.0
+ranged = false
+detection_radius = 280.0
+attack_radius = 38.0
+attack_cooldown = 1.0
+patrol_points = Array[Vector2]([Vector2(-120, 0), Vector2(120, 0)])
+patrol_speed = 60.0
+chase_speed = 140.0
+invulnerability_time = 0.2
+death_delay = 0.4
+sprite_scale = Vector2(1.2, 1.2)
+collision_size = Vector2(20, 38)
+hurtbox_size = Vector2(24, 42)

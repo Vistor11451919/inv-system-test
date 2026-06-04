@@ -1,0 +1,22 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemy_config.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+enemy_id = "heavy"
+display_name = "heavy"
+max_hp = 200.0
+attack = 20.0
+defense = 15.0
+gravity = 980.0
+ranged = false
+detection_radius = 180.0
+attack_radius = 52.0
+attack_cooldown = 2.5
+invulnerability_time = 0.5
+chase_speed = 50.0
+death_delay = 0.8
+sprite_scale = Vector2(2.0, 2.0)
+collision_size = Vector2(30, 48)
+hurtbox_size = Vector2(34, 52)

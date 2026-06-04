@@ -1,0 +1,24 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemy_config.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+enemy_id = "soldier"
+display_name = "soldier"
+max_hp = 60.0
+attack = 8.0
+defense = 5.0
+gravity = 980.0
+ranged = false
+detection_radius = 200.0
+attack_radius = 42.0
+attack_cooldown = 1.5
+patrol_points = Array[Vector2]([Vector2(-80, 0), Vector2(80, 0)])
+patrol_speed = 40.0
+chase_speed = 80.0
+invulnerability_time = 0.3
+death_delay = 0.5
+sprite_scale = Vector2(1.5, 1.5)
+collision_size = Vector2(24, 40)
+hurtbox_size = Vector2(28, 44)

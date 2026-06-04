@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ninja_art_timeline.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+timeline_id = "shuriken"
+can_cancel = true
+total_channel_time = 0.0
+steps = [{"effect_id": "spawn_projectile", "delay": 0.0, "description": "发射手里剑", "sound_id": "shuriken_throw", "params": {"scene": "res://scenes/common/projectile.tscn", "speed": 400, "damage": 8}}]

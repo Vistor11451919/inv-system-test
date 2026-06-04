@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="EnemyConfig" format=3 uid="uid://c1v834uo6r105"]
+
+[ext_resource type="Script" uid="uid://c6hb8vc7qo5d4" path="res://scripts/enemy_config.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/common/projectile.tscn" id="2"]
+
+[resource]
+script = ExtResource("1")
+enemy_id = "floater"
+display_name = "floater"
+max_hp = 30.0
+attack = 8.0
+defense = 3.0
+gravity = 0.0
+ranged = true
+detection_radius = 250.0
+attack_radius = 160.0
+attack_cooldown = 2.5
+projectile_scene = ExtResource("2")
+projectile_speed = 180.0
+homing = true
+homing_strength = 3.0
+chase_speed = 70.0
+invulnerability_time = 0.2
+death_delay = 0.3
+sprite_scale = Vector2(1.2, 1.2)
+collision_size = Vector2(20, 20)
+hurtbox_size = Vector2(24, 24)

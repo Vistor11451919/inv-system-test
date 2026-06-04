@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="EnemyConfig" format=3 uid="uid://cfyg1kvyllac7"]
+
+[ext_resource type="Script" uid="uid://c6hb8vc7qo5d4" path="res://scripts/enemy_config.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/common/projectile.tscn" id="2"]
+
+[resource]
+script = ExtResource("1")
+enemy_id = "test_boss"
+display_name = "Test Boss"
+max_hp = 200.0
+attack = 15.0
+defense = 8.0
+detection_radius = 300.0
+attack_radius = 50.0
+attack_cooldown = 1.8
+projectile_scene = ExtResource("2")
+projectile_speed = 250.0
+chase_speed = 80.0
+placeholder_color = Color(0.4, 0.1, 0.1, 1)
+sprite_scale = Vector2(2.5, 2.5)
+collision_size = Vector2(36, 56)
+hurtbox_size = Vector2(40, 60)

@@ -1,0 +1,16 @@
+# Godot
+.godot/
+*.translation
+export.cfg
+export_presets.cfg
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+*.code-workspace
+.vscode/
+.idea/
+__pycache__/

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ninja_art_timeline.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+timeline_id = "heal"
+can_cancel = false
+total_channel_time = 0.4
+steps = [{"effect_id": "spawn_effect", "delay": 0.0, "description": "回复特效", "sound_id": "heal_cast", "params": {"scene": ""}}, {"effect_id": "heal", "delay": 0.4, "description": "回复 HP", "params": {"amount": 25}}]

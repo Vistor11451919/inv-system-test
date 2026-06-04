@@ -1,0 +1,18 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ninja_art.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+art_id = "heal"
+art_name = "回复术"
+element = 2
+category = 2
+tier = 2
+cooldown = 3.0
+chakra_cost = 20
+cast_animation = "ninja_art_cast"
+cast_time = 0.5
+data_packet = {
+"timeline": "res://data/ninja_arts/timelines/heal_timeline.tres"
+}

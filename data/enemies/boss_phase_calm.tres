@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BossPhaseConfig" format=3]
+
+[ext_resource type="Script" path="res://scripts/boss_phase_config.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+phase_name = "Calm"
+health_threshold = 1.0
+new_attack_patterns = Array[String](["melee"])
+move_speed_multiplier = 1.0
+attack_rate_multiplier = 1.0
