@@ -71,5 +71,6 @@ func _move_to_current_point(enemy, delta):
 
 	if abs(target.x - enemy.global_position.x) < 4.0:
 		enemy.velocity.x = 0
+		enemy.velocity.y = 0
 		_waiting = true
 		_wait_timer = enemy.config.patrol_pause if enemy.config else 1.0

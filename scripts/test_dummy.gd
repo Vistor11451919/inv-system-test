@@ -14,7 +14,7 @@ var entity_id: int = -1
 
 func _ready():
 	current_hp = max_hp
-	entity_id = WorldManager.register_entity(self, "dummy")
+	entity_id = WorldManager.register_entity(self)
 	$Hurtbox.entity_id = entity_id
 	EventBus.damage_dealt.connect(_on_damage_dealt)
 	queue_redraw()

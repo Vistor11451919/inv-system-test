@@ -10,3 +10,5 @@ extends Resource
 @export var move_speed_multiplier: float = 1.0
 @export var attack_rate_multiplier: float = 1.0
 
+## 本阶段 Boss 使用的忍术列表
+@export var phase_ninja_arts: Array[Resource] = []

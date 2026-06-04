@@ -40,10 +40,11 @@ func _melee_attack(enemy):
 	enemy.set_facing(_locked_dir)
 	enemy._hitbox.damage = enemy.config.attack if enemy.config else 10.0
 	enemy._hitbox.reset()
-	enemy._hitbox.monitoring = true
+	# set_deferred 避免 physics flushing 中直接修改物理属性导致崩溃
+	enemy._hitbox.set_deferred("monitoring", true)
 	var hs = enemy._hitbox.get_node_or_null("CollisionShape2D")
 	if hs:
-		hs.disabled = false
+		hs.set_deferred("disabled", false)
 	_hitbox_active = true
 
 func _ranged_attack(enemy):
@@ -74,8 +75,9 @@ func _ranged_attack(enemy):
 func _disable_hitbox(enemy):
 	if not is_instance_valid(enemy):
 		return
-	enemy._hitbox.monitoring = false
+	# set_deferred 避免 physics flushing 崩溃
+	enemy._hitbox.set_deferred("monitoring", false)
 	var hs = enemy._hitbox.get_node_or_null("CollisionShape2D")
 	if hs:
-		hs.disabled = true
+		hs.set_deferred("disabled", true)
 	_hitbox_active = false

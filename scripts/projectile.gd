@@ -12,6 +12,8 @@ var _homing_target: Node = null
 var _homing_strength: float = 2.0
 var _piercing: bool = false
 
+static var _placeholder_texture: ImageTexture = null
+
 @onready var _sprite: Sprite2D = $Sprite2D
 
 
@@ -19,9 +21,15 @@ func _ready():
 	area_entered.connect(_on_hit)
 	body_entered.connect(_on_hit)
 	if _sprite and not _sprite.texture:
+		_sprite.texture = _get_placeholder()
+
+
+static func _get_placeholder() -> ImageTexture:
+	if not _placeholder_texture:
 		var img = Image.create(8, 8, false, Image.FORMAT_RGBA8)
 		img.fill(Color(1, 0.8, 0.2, 1))
-		_sprite.texture = ImageTexture.create_from_image(img)
+		_placeholder_texture = ImageTexture.create_from_image(img)
+	return _placeholder_texture
 
 
 func launch(dir: Vector2, speed: float, caster_id: int, damage: float,
@@ -36,7 +44,6 @@ func launch(dir: Vector2, speed: float, caster_id: int, damage: float,
 	_spawned_at = Time.get_ticks_msec() / 1000.0
 
 	if _homing_target:
-		# 追踪弹：黄色
 		_sprite.self_modulate = Color(1, 0.5, 0.0, 1)
 	else:
 		_sprite.self_modulate = Color(1, 0.8, 0.2, 1)

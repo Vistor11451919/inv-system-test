@@ -34,6 +34,10 @@ extends Resource
 ## 伤害公式
 @export var damage_formula_id: String = "default"
 
+## 忍术攻击 — 配置后敌人使用此忍术代替硬编码近战/远程
+@export var ninja_art: Resource = null
+@export var ninja_arts: Array[Resource] = []
+
 ## 巡逻路点（空列表 = 站桩）
 @export var patrol_points: Array[Vector2] = []
 ## 到达路点后停留时间（秒）

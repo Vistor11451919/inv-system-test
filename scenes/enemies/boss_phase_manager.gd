@@ -39,6 +39,10 @@ func enter_phase(phase_index: int):
 	if boss and boss.has_method("set_attack_patterns"):
 		boss.set_attack_patterns(config.new_attack_patterns)
 
+	# 更新忍术列表
+	if boss and boss.has_method("set_ninja_arts"):
+		boss.set_ninja_arts(config.phase_ninja_arts)
+
 	# 更新移速
 	if boss and boss.has_method("set_speed_multiplier"):
 		boss.set_speed_multiplier(config.move_speed_multiplier)

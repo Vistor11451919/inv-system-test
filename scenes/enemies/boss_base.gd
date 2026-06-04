@@ -10,6 +10,7 @@ extends EnemyBase
 
 var _has_died: bool = false
 var _current_attack_patterns: Array[String] = []
+var _current_ninja_arts: Array[Resource] = []
 var _speed_multiplier: float = 1.0
 var _attack_rate_multiplier: float = 1.0
 var _arena_locked: bool = false
@@ -47,6 +48,10 @@ func get_blackboard(key: String, default_val: Variant = null):
 
 func set_attack_patterns(patterns: Array[String]):
 	_current_attack_patterns = patterns
+
+## 设置本阶段 Boss 使用的忍术列表
+func set_ninja_arts(arts: Array):
+	_current_ninja_arts = arts
 
 func set_speed_multiplier(val: float):
 	_speed_multiplier = val

@@ -1,6 +1,8 @@
 class_name DamageUtils
 extends RefCounted
 
+static var _shared_rng := RandomNumberGenerator.new()
+
 static func resolve_damage(
 	caster_id: int,
 	target_id: int,
@@ -42,7 +44,7 @@ static func resolve_damage(
 
 	# 暴击计算
 	var crit_rate: float = caster.get_stat("crit_rate", 0.0)
-	var rand: RandomNumberGenerator = rng if rng else RandomNumberGenerator.new()
+	var rand: RandomNumberGenerator = rng if rng else _shared_rng
 	if crit_rate > 0.0 and rand.randf() < crit_rate:
 		var crit_damage: float = caster.get_stat("crit_damage", 1.5)
 		final *= crit_damage

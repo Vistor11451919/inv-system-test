@@ -1,45 +1,40 @@
 extends Node2D
 
-## 敌人 AI 测试关卡
+## 背包测试关卡 — 背包 UI + 物品添加 + 背包监视器
 
-const BOSS_MON = preload("res://scenes/test/boss_monitor.gd")
+const INVENTORY_UI = preload("res://scenes/ui/inventory_ui.tscn")
+const ITEM_ADDER = preload("res://scenes/ui/item_adder.tscn")
+const INV_MONITOR = preload("res://scenes/test/inventory_monitor.gd")
+
+var _inventory_ui: CanvasLayer = null
 
 func _ready():
 	AbilityRegistry.unlock_all()
-	DataManager.set_attr("chakra", DataManager.get_attr("max_chakra", 50.0))
+	_setup_inventory_ui()
+	_setup_inventory_monitor()
 
-	var shuriken = load("res://data/ninja_arts/shuriken.tres")
-	if shuriken:
-		DataManager.equip_ninja_art(shuriken, 0)
-	var heal = load("res://data/ninja_arts/heal.tres")
-	if heal:
-		DataManager.equip_ninja_art(heal, 1)
+func _setup_inventory_ui():
+	# 背包面板（按 I 开关）
+	_inventory_ui = INVENTORY_UI.instantiate()
+	add_child(_inventory_ui)
 
-	await get_tree().process_frame
-	_start_boss_monitor()
+	# 测试物品添加按钮（左上角）
+	var adder = ITEM_ADDER.instantiate()
+	add_child(adder)
+	adder.get_node("Bg/BtnPotion").pressed.connect(func(): InventoryManager.add_item("potion_hp", 3))
+	adder.get_node("Bg/BtnChakra").pressed.connect(func(): InventoryManager.add_item("potion_chakra", 3))
+	adder.get_node("Bg/BtnKatana").pressed.connect(func(): InventoryManager.add_item("weapon_katana", 1))
+	adder.get_node("Bg/BtnAxe").pressed.connect(func(): InventoryManager.add_item("weapon_axe", 1))
+	adder.get_node("Bg/BtnArmor").pressed.connect(func(): InventoryManager.add_item("armor_leather", 1))
+	adder.get_node("Bg/BtnRing").pressed.connect(func(): InventoryManager.add_item("accessory_ring", 1))
+	adder.get_node("Bg/BtnOre").pressed.connect(func(): InventoryManager.add_item("ore", 5))
+	adder.get_node("Bg/BtnClear").pressed.connect(func():
+		InventoryManager.backend.items.clear()
+		InventoryManager.backend.equipment.clear()
+		InventoryManager.inventory_changed.emit()
+		EventBus.inventory_changed.emit()
+	)
 
-func _start_boss_monitor():
-	var target = null
-	for child in get_children():
-		if child is BossBase:
-			target = child
-			break
-	if target:
-		# 确保 phase_manager 引用
-		var pm: BossPhaseManager = target.phase_manager
-		if not pm:
-			pm = target.get_node("AI/PhaseManager") as BossPhaseManager
-			target.phase_manager = pm
-		# 先加载阶段配置，再初始化（initialize 会调用 enter_phase(0)）
-		pm.phases = [
-			load("res://data/enemies/boss_phase_calm.tres"),
-			load("res://data/enemies/boss_phase_angry.tres"),
-			load("res://data/enemies/boss_phase_frenzy.tres"),
-		]
-		pm.initialize(target)
-		var mon = BOSS_MON.new()
-		add_child(mon)
-		mon.watch(target)
-		print("  [Boss监视器] 观察: %s" % target.boss_name)
-	else:
-		print("  [Boss监视器] 未找到 Boss")
+func _setup_inventory_monitor():
+	var mon = INV_MONITOR.new()
+	add_child(mon)
